@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 350px;
+}
+
+.header,
+.footer {
+  padding: 1em;
+}
+
+.main-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr;
+  background-color: #6b9870;
+  color: whitesmoke;
+}
+
+.margin-top-and-bottom {
+  margin: 2em 0 2em;
+}
+
+.section-one {
+  grid-column: 1/4;
+  padding: 1em;
+  border-bottom: 1px solid #6b9870;
+}
+.section-two {
+  grid-column: 4/6;
+  background-image: url("./images/forest.jpg");
+  background-size: cover;
+}
+
+.link {
+  text-decoration: none;
+}
