@@ -6,11 +6,13 @@ import {
   getDataFromLocalStorage,
   constants,
   getFullWeekDay,
+  removeUserNotification,
 } from "../utils/utils.js";
 
 const quoteEl = document.getElementById("quote");
 const authorEl = document.getElementById("author");
 const introEl = document.getElementById("intro");
+const closeBtnEl = document.getElementById("close-btn");
 
 const updateUI = ({ content, author, intro }) => {
   quoteEl.innerText = content;
@@ -18,9 +20,18 @@ const updateUI = ({ content, author, intro }) => {
   introEl.innerText = intro;
 };
 
+/**
+ * Gets introduction text with day of the week
+ * @returns {String}
+ */
+
 const getIntroText = () => {
   return `Your ${getFullWeekDay()} inspiration`;
 };
+
+closeBtnEl.addEventListener("click", () => {
+  window.close();
+});
 
 /**
  * Can't use chrome.action.clicked in background.js
@@ -31,9 +42,13 @@ const getIntroText = () => {
 
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    const todaysDateAndQuote = await getDataFromLocalStorage([
-      localStorageKeys.todaysDateInMs,
-      localStorageKeys.todaysQuote,
+    const [todaysDateAndQuote] = await Promise.all([
+      getDataFromLocalStorage([
+        localStorageKeys.todaysDateInMs,
+        localStorageKeys.todaysQuote,
+      ]),
+      removeUserNotification(),
+      // Remove user notififcation even if its off. Refactor to first check if user has seen today's quote
     ]);
     const todaysDateInMs = todaysDateAndQuote[localStorageKeys.todaysDateInMs];
     const todaysQuote = todaysDateAndQuote[localStorageKeys.todaysQuote];
@@ -46,7 +61,6 @@ window.addEventListener("DOMContentLoaded", async () => {
       await setDataToLocalStorage({
         [localStorageKeys.hasReadTodaysQuote]: constants.hasReadTodaysQuote,
       });
-
       return;
     }
 
@@ -59,12 +73,11 @@ window.addEventListener("DOMContentLoaded", async () => {
     const exposedQuotes =
       quotesAndExposedQuotes[localStorageKeys.exposedQuotes];
 
+    // This runs if it is another day and
+    // all quotes are used up. Init database and update UI
     if (quotes.length === 0) {
-      // All quotes are used up. Init database and update UI
-
       // FIXME: Shuffle the existing exposed quotes and use it in database
       // Currently returning it as is
-
       const newQuotes = exposedQuotes;
       const todaysQuote = newQuotes.pop();
 
@@ -77,10 +90,10 @@ window.addEventListener("DOMContentLoaded", async () => {
         [localStorageKeys.exposedQuotes]: [todaysQuote],
         [localStorageKeys.hasReadTodaysQuote]: constants.hasReadTodaysQuote,
       });
-
       return;
     }
 
+    // This runs if it is another day
     const todaysNewQuote = quotes.pop();
     exposedQuotes.push(todaysNewQuote);
 
