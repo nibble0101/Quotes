@@ -142,8 +142,6 @@ export const removeUserNotification = async () => {
   return true;
 };
 
-export const getUserNotification = async () => {};
-
 /**
  * Returns full day of the week
  * @returns {String}
@@ -173,14 +171,73 @@ export const setTitle = async () => {
  * Gets the date and time for next notification
  * @param {Date} currentDate
  */
-
 export const getNextNotificationDate = (currentDate) => {
   const nextUpdateDate = currentDate;
 };
 
 /**
- * Schedule next update
- * @param {Date} nextNotificationDate
+ * Checks if today is a new day and update database if so
+ * @returns {Promise}
  */
+export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
+  const todaysDateAndReadStatus = await getDataFromLocalStorage([
+    localStorageKeys.todaysDateInMs,
+    localStorageKeys.hasReadTodaysQuote,
+  ]);
+  const todaysDateInMs =
+    todaysDateAndReadStatus[localStorageKeys.todaysDateInMs];
+  const hasReadTodaysQuote =
+    todaysDateAndReadStatus[localStorageKeys.hasReadTodaysQuote];
+  const isSameDay = checkIfIsTheSameDay(new Date(todaysDateInMs), new Date());
 
-export const scheduleNextNotification = (nextNotificationDate) => {};
+  // It is the same day. Doesn't matter whether user has seen quote or not. Do nothing
+  if (isSameDay) {
+    // Closing the browser removes the notification
+    // Set it if user has not read quote
+    if (hasReadTodaysQuote === constants.hasNotReadTodaysQuote) {
+      await setUserNotification();
+    }
+    return;
+  }
+
+  // It is another day.
+  const quotesAndExposedQuotes = await getDataFromLocalStorage([
+    localStorageKeys.quotes,
+    localStorageKeys.exposedQuotes,
+  ]);
+
+  const quotes = quotesAndExposedQuotes[localStorageKeys.quotes];
+  const exposedQuotes = quotesAndExposedQuotes[localStorageKeys.exposedQuotes];
+
+  // Another day but quotes in local storage are finished
+  if (quotes.length === 0) {
+    // FIXME: Shuffle the existing exposed quotes and use it as new batch of quotes
+    // Currently returning it as is
+    const newQuotes = exposedQuotes;
+    const todaysQuote = newQuotes.pop();
+
+    await setDataToLocalStorage({
+      [localStorageKeys.quotes]: newQuotes,
+      [localStorageKeys.todaysDateInMs]: Date.now(),
+      [localStorageKeys.todaysQuote]: todaysQuote,
+      [localStorageKeys.exposedQuotes]: [todaysQuote],
+      [localStorageKeys.hasReadTodaysQuote]: constants.hasNotReadTodaysQuote,
+    });
+    await setUserNotification();
+    return;
+  }
+
+  // Another day
+
+  const todaysNewQuote = quotes.pop();
+  exposedQuotes.push(todaysNewQuote);
+
+  await setDataToLocalStorage({
+    [localStorageKeys.quotes]: quotes,
+    [localStorageKeys.todaysDateInMs]: Date.now(),
+    [localStorageKeys.todaysQuote]: todaysNewQuote,
+    [localStorageKeys.exposedQuotes]: exposedQuotes,
+    [localStorageKeys.hasReadTodaysQuote]: constants.hasNotReadTodaysQuote,
+  });
+  await setUserNotification();
+};
