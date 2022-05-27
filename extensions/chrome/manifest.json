@@ -1,9 +1,9 @@
 {
   "name": "Inspirational Quotes",
   "description": "A simple quote to inspire you for the rest of your day",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "manifest_version": 3,
-  "permissions": ["storage"],
+  "permissions": ["storage", "idle"],
   "background": {
     "service_worker": "background.js",
     "type": "module"
