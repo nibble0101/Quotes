@@ -103,7 +103,7 @@ export const shuffleArray = (array) => {
 };
 
 /**
- * Check if it is another day
+ * Check if it is the same day
  * @param {Date} dateToCheck
  * @param {Date} todaysDate
  * @returns {Boolean}
@@ -168,26 +168,18 @@ export const setTitle = async () => {
 };
 
 /**
- * Gets the date and time for next notification
- * @param {Date} currentDate
- */
-export const getNextNotificationDate = (currentDate) => {
-  const nextUpdateDate = currentDate;
-};
-
-/**
  * Checks if today is a new day and update database if so
  * @returns {Promise}
  */
 export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
-  const todaysDateAndReadStatus = await getDataFromLocalStorage([
+  const {
+    [localStorageKeys.todaysDateInMs]: todaysDateInMs,
+    [localStorageKeys.hasReadTodaysQuote]: hasReadTodaysQuote,
+  } = await getDataFromLocalStorage([
     localStorageKeys.todaysDateInMs,
     localStorageKeys.hasReadTodaysQuote,
   ]);
-  const todaysDateInMs =
-    todaysDateAndReadStatus[localStorageKeys.todaysDateInMs];
-  const hasReadTodaysQuote =
-    todaysDateAndReadStatus[localStorageKeys.hasReadTodaysQuote];
+
   const isSameDay = checkIfIsTheSameDay(new Date(todaysDateInMs), new Date());
 
   // It is the same day. Doesn't matter whether user has seen quote or not. Do nothing
