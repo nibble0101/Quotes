@@ -1,12 +1,15 @@
 {
   "name": "quotes",
   "version": "1.0.0",
-  "description": "",
+  "description": "Quotes browser extension",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fetch-quotes": "node index.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Joseph Mawa",
+  "license": "MIT",
+  "devDependencies": {
+    "axios": "^0.27.2"
+  }
 }
