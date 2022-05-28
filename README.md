@@ -2,7 +2,7 @@
 
 ![Quote extension](./screenshots/extension.png)
 
-A simple browser extension which retrieves one inspiring quote each day.
+A simple browser extension which retrieves one inspiring quote each day for 365 days. The quotes have been hand picked to make your day productive. Enjoy!
 
 ## License
 

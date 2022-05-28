@@ -1,6 +1,5 @@
 import {
   localStorageKeys,
-  messages,
   setDataToLocalStorage,
   checkIfIsTheSameDay,
   getDataFromLocalStorage,
@@ -14,6 +13,10 @@ const authorEl = document.getElementById("author");
 const introEl = document.getElementById("intro");
 const closeBtnEl = document.getElementById("close-btn");
 
+/**
+ * Updates UI
+ *
+ */
 const updateUI = ({ content, author, intro }) => {
   quoteEl.innerText = content;
   authorEl.innerText = author;
@@ -24,7 +27,6 @@ const updateUI = ({ content, author, intro }) => {
  * Gets introduction text with day of the week
  * @returns {String}
  */
-
 const getIntroText = () => {
   return `Your ${getFullWeekDay()} inspiration`;
 };

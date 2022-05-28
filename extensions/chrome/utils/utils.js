@@ -193,13 +193,13 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
   }
 
   // It is another day.
-  const quotesAndExposedQuotes = await getDataFromLocalStorage([
+  const {
+    [localStorageKeys.quotes]: quotes,
+    [localStorageKeys.exposedQuotes]: exposedQuotes,
+  } = await getDataFromLocalStorage([
     localStorageKeys.quotes,
     localStorageKeys.exposedQuotes,
   ]);
-
-  const quotes = quotesAndExposedQuotes[localStorageKeys.quotes];
-  const exposedQuotes = quotesAndExposedQuotes[localStorageKeys.exposedQuotes];
 
   // Another day but quotes in local storage are finished
   if (quotes.length === 0) {

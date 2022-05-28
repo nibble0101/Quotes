@@ -7,14 +7,16 @@
 body {
   min-width: 350px;
 }
-.header__close-btn-wrapper{
+
+.header__close-btn-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0;
   margin: 0;
 }
-.btn{
+
+.btn {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -25,10 +27,10 @@ body {
   border: none;
   background-color: white;
 }
-.btn:hover{
+.btn:hover {
   background-color: lightgray;
 }
-.header{
+.header {
   padding: 0.2em 1em 1em 1em;
 }
 .footer {
@@ -52,9 +54,11 @@ body {
   padding: 1em;
   border-bottom: 1px solid #6b9870;
 }
-.large-font{
+
+.large-font {
   font-size: 1.5em;
 }
+
 .section-two {
   grid-column: 4/6;
   background-image: url("./images/forest.jpg");
