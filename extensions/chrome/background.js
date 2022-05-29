@@ -8,7 +8,7 @@ import {
   checkIfNewDayAndUpdateDatabaseIfSo,
 } from "./utils/utils.js";
 
-const baseUrl = "https://api.quotable.io"; // FIXME temporary until we set our own quotes API
+const baseUrl = "https://raw.githubusercontent.com"; // FIXME temporary until we set our own quotes API
 
 // Triggers after installation and after browser/extension update
 chrome.runtime.onInstalled.addListener(async () => {
@@ -24,14 +24,13 @@ chrome.runtime.onInstalled.addListener(async () => {
     }
 
     // onInstalled event tiggered by extension installation
-    const url = new URL("quotes", baseUrl);
-    url.searchParams.set("tags", "inspirational");
+    const url = new URL("nibble0101/Quotes/main/data/quotes.json", baseUrl);
 
     const quotes = await fetchData(url.href);
-    const todaysQuote = quotes.results.pop();
+    const todaysQuote = quotes.pop();
 
     await setDataToLocalStorage({
-      [localStorageKeys.quotes]: quotes.results,
+      [localStorageKeys.quotes]: quotes,
       [localStorageKeys.todaysDateInMs]: Date.now(),
       [localStorageKeys.todaysQuote]: todaysQuote,
       [localStorageKeys.exposedQuotes]: [todaysQuote],

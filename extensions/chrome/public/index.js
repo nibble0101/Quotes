@@ -17,8 +17,8 @@ const closeBtnEl = document.getElementById("close-btn");
  * Updates UI
  *
  */
-const updateUI = ({ content, author, intro }) => {
-  quoteEl.innerText = content;
+const updateUI = ({ quote, author, intro }) => {
+  quoteEl.innerText = quote;
   authorEl.innerText = author;
   introEl.innerText = intro;
 };
