@@ -21,6 +21,7 @@ const fetchQuotableQuotes = async () => {
       tags: "inspirational",
       page: 1,
     });
+
     const { data } = await axios.get(url);
     const { totalPages, results } = data;
     quotes.push(...results);
@@ -49,13 +50,17 @@ const fetchQuotableQuotes = async () => {
     const extractedQuotes = extractQuotes(quotes);
 
     if (fs.existsSync(filePath)) {
-      fs.writeFile(filePath, JSON.stringify(extractedQuotes, null, 4), (err) => {
-        if (err) {
-          console.error(err);
-          return;
+      fs.writeFile(
+        filePath,
+        JSON.stringify(extractedQuotes, null, 4),
+        (err) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log(`Saved quotes successfully to ${filePath}`);
         }
-        console.log(`Saved quotes successfully to ${filePath}`);
-      });
+      );
     }
   } catch (error) {
     console.error(error);
