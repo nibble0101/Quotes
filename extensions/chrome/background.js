@@ -2,12 +2,12 @@ import {
   fetchData,
   setDataToLocalStorage,
   getDataFromLocalStorage,
-  localStorageKeys,
-  constants,
   setUserNotification,
   checkIfNewDayAndUpdateDatabaseIfSo,
   shuffleArray,
 } from "./utils/utils.js";
+
+import { constants, localStorageKeys } from "./utils/constants.js";
 
 // FIXME temporary until we set our own quotes API
 const baseUrl = "https://raw.githubusercontent.com";

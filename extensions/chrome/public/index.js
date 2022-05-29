@@ -1,13 +1,13 @@
 import {
-  localStorageKeys,
   setDataToLocalStorage,
   checkIfIsTheSameDay,
   getDataFromLocalStorage,
-  constants,
   getFullWeekDay,
   removeUserNotification,
   shuffleArray,
 } from "../utils/utils.js";
+
+import { constants, localStorageKeys } from "../utils/constants.js";
 
 const quoteEl = document.getElementById("quote");
 const authorEl = document.getElementById("author");
@@ -47,20 +47,20 @@ closeBtnEl.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    const todaysDateAndQuote = getDataFromLocalStorage([
+    const todaysDateAndQuote = await getDataFromLocalStorage([
       localStorageKeys.todaysDateInMs,
       localStorageKeys.todaysQuote,
     ]);
 
     // Remove user notififcation even if its off
     // FIXME Refactor to first check if user has seen today's quote
-    removeUserNotification();
+    await removeUserNotification();
 
     const todaysDateInMs = todaysDateAndQuote[localStorageKeys.todaysDateInMs];
     const todaysQuote = todaysDateAndQuote[localStorageKeys.todaysQuote];
 
     const isSameDay = checkIfIsTheSameDay(new Date(todaysDateInMs), new Date());
-
+  
     // Same day
     if (isSameDay) {
       // Update UI

@@ -1,39 +1,9 @@
-/**
- * LocalStorage keys
- */
-export const localStorageKeys = {
-  quotes: "QUOTES",
-  todaysQuote: "TODAYS_QUOTE",
-  exposedQuotes: "EXPOSED_QUOTES",
-  todaysDateInMs: "TODAYS_DATE_IN_MS",
-  hasReadTodaysQuote: "HAS_READ_TODAYS_QUOTE",
-};
-
-/**
- * Constants
- */
-export const constants = {
-  hasReadTodaysQuote: "YES",
-  hasNotReadTodaysQuote: "NO",
-};
-
-/**
- * Full days of the week
- */
-const fullWeekDays = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-/**
- * Short days of the week
- */
-const shortWeekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+import {
+  fullWeekDays,
+  shortWeekDays,
+  constants,
+  localStorageKeys,
+} from "./constants.js";
 
 /**
  * Fetch resource from URI
@@ -216,7 +186,7 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
       [localStorageKeys.hasReadTodaysQuote]: constants.hasNotReadTodaysQuote,
     });
     await setUserNotification();
-    
+
     return;
   }
 
