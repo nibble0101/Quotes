@@ -86,15 +86,15 @@ window.addEventListener("DOMContentLoaded", async () => {
     // Another day but quotes in local storage are finished
     if (quotes.length === 0) {
       // Shuffle the existing exposed quotes and use it in place of quotes
-      const newQuotes = shuffleArray(exposedQuotes);
-      const todaysQuote = newQuotes.pop();
+      const shuffledQuotes = shuffleArray(exposedQuotes);
+      const todaysQuote = shuffledQuotes.pop();
 
       // Update UI with today's quote
       updateUI({ ...todaysQuote, intro: getIntroText() });
 
       // Update database
       await setDataToLocalStorage({
-        [localStorageKeys.quotes]: newQuotes,
+        [localStorageKeys.quotes]: shuffledQuotes,
         [localStorageKeys.todaysDateInMs]: Date.now(),
         [localStorageKeys.todaysQuote]: todaysQuote,
         [localStorageKeys.exposedQuotes]: [todaysQuote],
