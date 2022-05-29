@@ -31,6 +31,9 @@ const getIntroText = () => {
   return `Your ${getFullWeekDay()} inspiration`;
 };
 
+/**
+ * Close pop window
+ */
 closeBtnEl.addEventListener("click", () => {
   window.close();
 });
@@ -52,6 +55,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       removeUserNotification(),
       // Remove user notififcation even if its off. Refactor to first check if user has seen today's quote
     ]);
+    
     const todaysDateInMs = todaysDateAndQuote[localStorageKeys.todaysDateInMs];
     const todaysQuote = todaysDateAndQuote[localStorageKeys.todaysQuote];
 

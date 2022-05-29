@@ -6,6 +6,7 @@ import {
   constants,
   setUserNotification,
   checkIfNewDayAndUpdateDatabaseIfSo,
+  shuffleArray
 } from "./utils/utils.js";
 
 const baseUrl = "https://raw.githubusercontent.com"; // FIXME temporary until we set our own quotes API
@@ -27,10 +28,11 @@ chrome.runtime.onInstalled.addListener(async () => {
     const url = new URL("nibble0101/Quotes/main/data/quotes.json", baseUrl);
 
     const quotes = await fetchData(url.href);
-    const todaysQuote = quotes.pop();
+    const shuffledQuotes = shuffleArray(quotes);
+    const todaysQuote = shuffledQuotes.pop();
 
     await setDataToLocalStorage({
-      [localStorageKeys.quotes]: quotes,
+      [localStorageKeys.quotes]: shuffledQuotes,
       [localStorageKeys.todaysDateInMs]: Date.now(),
       [localStorageKeys.todaysQuote]: todaysQuote,
       [localStorageKeys.exposedQuotes]: [todaysQuote],

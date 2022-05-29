@@ -1,7 +1,6 @@
 /**
  * LocalStorage keys
  */
-
 export const localStorageKeys = {
   quotes: "QUOTES",
   todaysQuote: "TODAYS_QUOTE",
@@ -11,20 +10,8 @@ export const localStorageKeys = {
 };
 
 /**
- * Message strings
- */
-
-export const messages = {
-  setNotification: "SET_NOTIFICATION",
-  removeNotification: "REMOVE_NOTIFICATION",
-  operationSuccessful: "OPERATION_SUCCESSFUL",
-  unknownMessage: "UNKNOWN_MESSAGE",
-};
-
-/**
  * Constants
  */
-
 export const constants = {
   hasReadTodaysQuote: "YES",
   hasNotReadTodaysQuote: "NO",
@@ -33,7 +20,6 @@ export const constants = {
 /**
  * Full days of the week
  */
-
 const fullWeekDays = [
   "Sunday",
   "Monday",
@@ -47,7 +33,6 @@ const fullWeekDays = [
 /**
  * Short days of the week
  */
-
 const shortWeekDays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
 /**
@@ -93,12 +78,27 @@ export const checkDataExistenceInLocalStorage = async (storagKey) => {
 };
 
 /**
- * Shuffle elements of array
+ * Fisher–Yates shuffle algorithm https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+ * Source https://bost.ocks.org/mike/shuffle/
  * @param {Array} array
  * @returns
  */
 export const shuffleArray = (array) => {
-  // TODO
+  let m = array.length,
+    t,
+    i;
+
+  // While there remain elements to shuffle…
+  while (m) {
+    // Pick a remaining element…
+    i = Math.floor(Math.random() * m--);
+
+    // And swap it with the current element.
+    t = array[m];
+    array[m] = array[i];
+    array[i] = t;
+  }
+
   return array;
 };
 
@@ -182,7 +182,7 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
 
   const isSameDay = checkIfIsTheSameDay(new Date(todaysDateInMs), new Date());
 
-  // It is the same day. Doesn't matter whether user has seen quote or not. Do nothing
+  // Same day.
   if (isSameDay) {
     // Closing the browser removes the notification
     // Set it if user has not read quote
@@ -192,7 +192,7 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
     return;
   }
 
-  // It is another day.
+  // Another day.
   const {
     [localStorageKeys.quotes]: quotes,
     [localStorageKeys.exposedQuotes]: exposedQuotes,
@@ -203,13 +203,12 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
 
   // Another day but quotes in local storage are finished
   if (quotes.length === 0) {
-    // FIXME: Shuffle the existing exposed quotes and use it as new batch of quotes
-    // Currently returning it as is
-    const newQuotes = exposedQuotes;
-    const todaysQuote = newQuotes.pop();
+    // Shuffle the existing exposed quotes and use it in place of quotes
+    const shuffledQuotes = shuffleArray(exposedQuotes);
+    const todaysQuote = shuffledQuotes.pop();
 
     await setDataToLocalStorage({
-      [localStorageKeys.quotes]: newQuotes,
+      [localStorageKeys.quotes]: shuffledQuotes,
       [localStorageKeys.todaysDateInMs]: Date.now(),
       [localStorageKeys.todaysQuote]: todaysQuote,
       [localStorageKeys.exposedQuotes]: [todaysQuote],
@@ -220,7 +219,6 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
   }
 
   // Another day
-
   const todaysNewQuote = quotes.pop();
   exposedQuotes.push(todaysNewQuote);
 
