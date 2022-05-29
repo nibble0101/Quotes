@@ -6,10 +6,11 @@ import {
   constants,
   setUserNotification,
   checkIfNewDayAndUpdateDatabaseIfSo,
-  shuffleArray
+  shuffleArray,
 } from "./utils/utils.js";
 
-const baseUrl = "https://raw.githubusercontent.com"; // FIXME temporary until we set our own quotes API
+// FIXME temporary until we set our own quotes API
+const baseUrl = "https://raw.githubusercontent.com";
 
 // Triggers after installation and after browser/extension update
 chrome.runtime.onInstalled.addListener(async () => {
@@ -20,7 +21,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
     // onInstalled event triggered by chrome/extension update
     if (todaysQuoteFromLocalStorage?.[localStorageKeys.todaysQuote]) {
-      console.log("Either extension or chrome has been updated");
+      // Either extension or chrome has been updated
       return;
     }
 
@@ -54,10 +55,10 @@ chrome.runtime.onStartup.addListener(async () => {
 });
 
 // Triggered when idle state of the device changes
-chrome.idle.onStateChanged.addListener(async(idleState) => {
+chrome.idle.onStateChanged.addListener(async (idleState) => {
   try {
     if (idleState === "active") {
-     await checkIfNewDayAndUpdateDatabaseIfSo();
+      await checkIfNewDayAndUpdateDatabaseIfSo();
     }
   } catch (error) {
     console.error(error);

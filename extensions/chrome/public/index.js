@@ -6,6 +6,7 @@ import {
   constants,
   getFullWeekDay,
   removeUserNotification,
+  shuffleArray,
 } from "../utils/utils.js";
 
 const quoteEl = document.getElementById("quote");
@@ -15,7 +16,6 @@ const closeBtnEl = document.getElementById("close-btn");
 
 /**
  * Updates UI
- *
  */
 const updateUI = ({ quote, author, intro }) => {
   quoteEl.innerText = quote;
@@ -47,26 +47,30 @@ closeBtnEl.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    const [todaysDateAndQuote] = await Promise.all([
-      getDataFromLocalStorage([
-        localStorageKeys.todaysDateInMs,
-        localStorageKeys.todaysQuote,
-      ]),
-      removeUserNotification(),
-      // Remove user notififcation even if its off. Refactor to first check if user has seen today's quote
+    const todaysDateAndQuote = getDataFromLocalStorage([
+      localStorageKeys.todaysDateInMs,
+      localStorageKeys.todaysQuote,
     ]);
-    
+
+    // Remove user notififcation even if its off
+    // FIXME Refactor to first check if user has seen today's quote
+    removeUserNotification();
+
     const todaysDateInMs = todaysDateAndQuote[localStorageKeys.todaysDateInMs];
     const todaysQuote = todaysDateAndQuote[localStorageKeys.todaysQuote];
 
     const isSameDay = checkIfIsTheSameDay(new Date(todaysDateInMs), new Date());
 
+    // Same day
     if (isSameDay) {
+      // Update UI
       updateUI({ ...todaysQuote, intro: getIntroText() });
 
+      // Update local storage
       await setDataToLocalStorage({
         [localStorageKeys.hasReadTodaysQuote]: constants.hasReadTodaysQuote,
       });
+
       return;
     }
 
@@ -79,16 +83,16 @@ window.addEventListener("DOMContentLoaded", async () => {
     const exposedQuotes =
       quotesAndExposedQuotes[localStorageKeys.exposedQuotes];
 
-    // This runs if it is another day and
-    // all quotes are used up. Init database and update UI
+    // Another day but quotes in local storage are finished
     if (quotes.length === 0) {
-      // FIXME: Shuffle the existing exposed quotes and use it in database
-      // Currently returning it as is
-      const newQuotes = exposedQuotes;
+      // Shuffle the existing exposed quotes and use it in place of quotes
+      const newQuotes = shuffleArray(exposedQuotes);
       const todaysQuote = newQuotes.pop();
 
+      // Update UI with today's quote
       updateUI({ ...todaysQuote, intro: getIntroText() });
 
+      // Update database
       await setDataToLocalStorage({
         [localStorageKeys.quotes]: newQuotes,
         [localStorageKeys.todaysDateInMs]: Date.now(),
@@ -96,15 +100,18 @@ window.addEventListener("DOMContentLoaded", async () => {
         [localStorageKeys.exposedQuotes]: [todaysQuote],
         [localStorageKeys.hasReadTodaysQuote]: constants.hasReadTodaysQuote,
       });
+
       return;
     }
 
-    // This runs if it is another day
+    // Another day
     const todaysNewQuote = quotes.pop();
     exposedQuotes.push(todaysNewQuote);
 
+    // Todays quote
     updateUI({ ...todaysNewQuote, intro: getIntroText() });
 
+    // Update database
     await setDataToLocalStorage({
       [localStorageKeys.quotes]: quotes,
       [localStorageKeys.todaysDateInMs]: Date.now(),

@@ -189,6 +189,7 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
     if (hasReadTodaysQuote === constants.hasNotReadTodaysQuote) {
       await setUserNotification();
     }
+
     return;
   }
 
@@ -215,6 +216,7 @@ export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
       [localStorageKeys.hasReadTodaysQuote]: constants.hasNotReadTodaysQuote,
     });
     await setUserNotification();
+    
     return;
   }
 
