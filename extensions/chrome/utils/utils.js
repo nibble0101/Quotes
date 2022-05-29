@@ -81,7 +81,7 @@ export const checkDataExistenceInLocalStorage = async (storagKey) => {
  * Fisher–Yates shuffle algorithm https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
  * Source https://bost.ocks.org/mike/shuffle/
  * @param {Array} array
- * @returns
+ * @returns {Array}
  */
 export const shuffleArray = (array) => {
   let m = array.length,
@@ -118,7 +118,7 @@ export const checkIfIsTheSameDay = (dateToCheck, todaysDate = new Date()) => {
 
 /**
  * Sets user notification
- * @returns {Promise}
+ * @returns
  */
 export const setUserNotification = async () => {
   await Promise.all([
@@ -131,7 +131,7 @@ export const setUserNotification = async () => {
 
 /**
  * Removes user notification
- * @returns {Promise}
+ * @returns
  */
 export const removeUserNotification = async () => {
   await Promise.all([
@@ -160,7 +160,7 @@ export const getShortWeekDay = () => {
 
 /**
  * Set extension title
- * @returns {String}
+ * @returns
  */
 export const setTitle = async () => {
   const title = `Your ${getFullWeekDay()} inspirational quote.`;
@@ -169,7 +169,7 @@ export const setTitle = async () => {
 
 /**
  * Checks if today is a new day and update database if so
- * @returns {Promise}
+ * @returns
  */
 export const checkIfNewDayAndUpdateDatabaseIfSo = async () => {
   const {
