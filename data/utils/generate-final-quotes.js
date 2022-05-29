@@ -17,7 +17,6 @@ const removeDuplicates = (quotes) => {
 };
 
 // From https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
-
 function getRandom(arr, n) {
   let result = new Array(n),
     len = arr.length,
@@ -37,12 +36,9 @@ fs.readFile(filePath, { encoding: "utf-8" }, (err, data) => {
     console.error(err);
     return;
   }
+
   const uniqueQuotes = removeDuplicates(JSON.parse(data));
-  const quoteIndices = new Array(uniqueQuotes.length).fill(0).map((_, i) => i);
-  const randomIndices = getRandom(quoteIndices, daysInYear * 2);
-  const randomQuotes = randomIndices.map(
-    (randomIndex) => uniqueQuotes[randomIndex]
-  );
+  const randomQuotes = getRandom(uniqueQuotes, daysInYear * 2);
 
   const filePath = path.join(process.cwd(), "data", "quotes.json");
 
