@@ -46,27 +46,15 @@ const fetchQuotableQuotes = async () => {
       quotes.push(...results);
     });
 
+    const extractedQuotes = extractQuotes(quotes);
+
     if (fs.existsSync(filePath)) {
-      fs.readFile(filePath, { encoding: "utf8" }, (err, data) => {
+      fs.writeFile(filePath, JSON.stringify(extractedQuotes, null, 4), (err) => {
         if (err) {
           console.error(err);
           return;
         }
-
-        const parsedQuotes = JSON.parse(data);
-        parsedQuotes.push(...extractQuotes(quotes));
-
-        fs.writeFile(
-          filePath,
-          JSON.stringify(parsedQuotes, null, 4),
-          (err) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            console.log(`Saved quotes successfully to ${filePath}`);
-          }
-        );
+        console.log(`Saved quotes successfully to ${filePath}`);
       });
     }
   } catch (error) {

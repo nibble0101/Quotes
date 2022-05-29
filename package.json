@@ -4,7 +4,10 @@
   "description": "Quotes browser extension",
   "main": "index.js",
   "scripts": {
-    "fetch-quotes": "node index.js"
+    "fetch-type-fit-quotes": "node  data/utils/fetch-type-fit.js",
+    "fetch-quotable-quotes": "node  data/utils/fetch-quotable-quotes.js",
+    "fetch-quotes": "npm run fetch-type-fit-quotes && npm run fetch-quotable-quotes",
+    "generate-final-quotes": "node data/utils/generate-final-quotes.js"
   },
   "keywords": [],
   "author": "Joseph Mawa",
