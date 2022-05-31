@@ -7,7 +7,8 @@
     "fetch-type-fit-quotes": "node  data/utils/fetch-type-fit.js",
     "fetch-quotable-quotes": "node  data/utils/fetch-quotable-quotes.js",
     "fetch-quotes": "npm run fetch-type-fit-quotes && npm run fetch-quotable-quotes",
-    "generate-final-quotes": "node data/utils/generate-final-quotes.js"
+    "generate-final-quotes": "node data/utils/generate-final-quotes.js",
+    "build": "sh build.sh"
   },
   "keywords": [],
   "author": "Joseph Mawa",
