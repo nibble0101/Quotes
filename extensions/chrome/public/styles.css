@@ -1,3 +1,9 @@
+:root {
+  --focus: 2px solid rgba(53, 236, 49, 0.788);
+  --btn-bg-color: #0e6b16;
+  --btn-hover-bg-color: #3e8e41;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -17,22 +23,33 @@ body {
 }
 
 .btn {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+  outline: none;
+  border: none;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  outline: none;
-  border: none;
-  background-color: white;
+  color: white;
+  background-color: var(--btn-bg-color);
+  transition: background-color 0.5s, color 0.5s;
+
+}
+.btn:focus {
+  outline: var(--focus);
 }
 .btn:hover {
-  background-color: lightgray;
+  background-color: var(--btn-hover-bg-color);
+  color: whitesmoke;
 }
+.btn--close-window {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
 .header {
   padding: 0.2em 1em 1em 1em;
 }
+
 .footer {
   padding: 1em;
 }
@@ -41,8 +58,11 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
-  background-color: #6b9870;
-  color: whitesmoke;
+  background-color: #0e6b16;
+  color: white;
+  -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
 }
 
 .margin-top-and-bottom {
@@ -53,6 +73,9 @@ body {
   grid-column: 1/4;
   padding: 1em;
   border-bottom: 1px solid #6b9870;
+  -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
 }
 
 .large-font {
@@ -63,8 +86,27 @@ body {
   grid-column: 4/6;
   background-image: url("./images/forest.jpg");
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--new-quote {
+  padding: 10px 10px;
+  background-color: #0e6b16;
+  color: white;
+  transition: background-color 0.5s linear;
+}
+
+.btn--new-quote:hover {
+  background-color: #3e8e41;
 }
 
 .link {
   text-decoration: none;
+  outline: none;
+  padding: 2px 4px;
+}
+.link:focus {
+  outline: var(--focus);
 }
