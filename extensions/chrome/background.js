@@ -13,16 +13,26 @@ import { constants, localStorageKeys } from "./utils/constants.js";
 const baseUrl = "https://raw.githubusercontent.com";
 
 // Triggers after installation and after browser/extension update
-chrome.runtime.onInstalled.addListener(async () => {
+chrome.runtime.onInstalled.addListener(async (details) => {
   try {
-    const todaysQuoteFromLocalStorage = await getDataFromLocalStorage([
-      localStorageKeys.todaysQuote,
-    ]);
+    if (details.reason !== "install") {
+      // onInstalled event triggered by chrome/extension update.
+      // Updating chrome/extension removes notification. Retrieve
+      // read status from local storage
+      const localStorageData = await getDataFromLocalStorage([
+        localStorageKeys.hasReadTodaysQuote,
+      ]);
 
-    // onInstalled event triggered by chrome/extension update
-    if (todaysQuoteFromLocalStorage?.[localStorageKeys.todaysQuote]) {
-      // Either extension or chrome has been updated
-      return;
+      const hasReadTodaysQuote =
+        localStorageData[localStorageKeys.hasReadTodaysQuote];
+
+      // Check if user has read today's quote and notify if not.
+      if (hasReadTodaysQuote === constants.hasNotReadTodaysQuote) {
+        // User has not read today's quote. Set user notification.
+        await setUserNotification();
+      }
+
+      return; // Return without updating data in local storage
     }
 
     // onInstalled event tiggered by extension installation
@@ -39,6 +49,7 @@ chrome.runtime.onInstalled.addListener(async () => {
       [localStorageKeys.exposedQuotes]: [todaysQuote],
       [localStorageKeys.hasReadTodaysQuote]: constants.hasNotReadTodaysQuote,
     });
+
     await setUserNotification();
   } catch (error) {
     console.error(error);
