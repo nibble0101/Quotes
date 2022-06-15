@@ -1,0 +1,6 @@
+TODOS
+
+- Set grid-template-column to an appropriate height to stop the funny white color at the bottom of the popup
+- When you set the scroll-y to auto, be sure to set the container to tabindex = 0 so that it is keyboard accessible
+- Style the sroll bar to blend with the background color of the container
+- Fix the height of the first container to 175.2px. Looks like it is the best height to prevent the white color at the bottom from showing
