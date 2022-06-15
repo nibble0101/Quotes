@@ -6,6 +6,8 @@
   --body-color: #dddddd;
   --focus: 2px solid var(--body-color);
   --transition: 0.5s ease-in-out;
+  --scrollbar-bg-color: #38444d;
+  --scrollbar-thumb-bg-color: #826e53;
 }
 
 * {
@@ -77,7 +79,14 @@ body {
   -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
 }
-
+.section-one::-webkit-scrollbar{
+  width: 10px;
+  background-color: var(--scrollbar-bg-color);
+}
+.section-one::-webkit-scrollbar-thumb{
+  background-color: var(--scrollbar-thumb-bg-color);
+  border-radius: 10px;
+}
 .large-font {
   font-size: 1.5em;
 }
