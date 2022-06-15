@@ -19,8 +19,8 @@ export const fetchData = async (uri) => {
 /**
  * Get data from localStorage. If keys don't exist it returns {}
  * It doesn't throw an error if a requested key doesn't exist. The
- * non existent key will not be part of the returned object 
- * @param {String[]} storagKeys Array of local storage keys. 
+ * non existent key will not be part of the returned object
+ * @param {String[]} storagKeys Array of local storage keys.
  * @returns
  */
 export const getDataFromLocalStorage = async (storagKeys) => {
@@ -29,7 +29,7 @@ export const getDataFromLocalStorage = async (storagKeys) => {
 };
 
 /**
- * Sets data to localStorage. 
+ * Sets data to localStorage.
  * @param {Object} data Data you want to set to local storage in the form { key: value }
  * @returns
  */
@@ -40,7 +40,7 @@ export const setDataToLocalStorage = async (data) => {
 
 /**
  * Checks for existence of data in localStorage
- * @param {String} storagKey 
+ * @param {String} storagKey
  * @returns
  */
 export const checkDataExistenceInLocalStorage = async (storagKey) => {
@@ -71,6 +71,16 @@ export const shuffleArray = (array) => {
   }
 
   return array;
+};
+
+/**
+ * Returns random integer between from and to inclusive
+ * @param {integer} from
+ * @param {integer} to
+ * @returns { integer }
+ */
+export const getRandomInteger = (from, to) => {
+  return Math.floor(Math.random() * (to - from + 1)) + from;
 };
 
 /**

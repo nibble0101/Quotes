@@ -59,7 +59,7 @@ body {
 .main-wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
+  grid-template-rows: 175.2px; /* Appropriate to prevent the funny colors showing at the bottom */
   -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
@@ -72,6 +72,7 @@ body {
 .section-one {
   grid-column: 1/4;
   padding: 1em;
+  overflow-y: auto;
   -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
