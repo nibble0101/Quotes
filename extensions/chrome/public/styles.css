@@ -1,7 +1,11 @@
 :root {
-  --focus: 2px solid rgba(53, 236, 49, 0.788);
-  --btn-bg-color: #0e6b16;
-  --btn-hover-bg-color: #3e8e41;
+  --btn-bg-color: #04aa6d;
+  --btn-hover-bg-color: #29785b;
+  --btn-color: #ffffff;
+  --body-bg-color: #1d2a35;
+  --body-color: #dddddd;
+  --focus: 2px solid var(--body-color);
+  --transition: 0.5s ease-in-out;
 }
 
 * {
@@ -12,14 +16,14 @@
 
 body {
   min-width: 350px;
+  background-color: var(--body-bg-color);
+  color: var(--body-color);
 }
 
 .header__close-btn-wrapper {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0;
-  margin: 0;
 }
 
 .btn {
@@ -28,17 +32,15 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: white;
   background-color: var(--btn-bg-color);
-  transition: background-color 0.5s, color 0.5s;
-
+  color: var(--btn-color);
+  transition: background-color var(--transition);
 }
 .btn:focus {
   outline: var(--focus);
 }
 .btn:hover {
   background-color: var(--btn-hover-bg-color);
-  color: whitesmoke;
 }
 .btn--close-window {
   width: 20px;
@@ -47,7 +49,7 @@ body {
 }
 
 .header {
-  padding: 0.2em 1em 1em 1em;
+  padding: 1em;
 }
 
 .footer {
@@ -58,8 +60,6 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: 1fr;
-  background-color: #0e6b16;
-  color: white;
   -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
@@ -72,7 +72,6 @@ body {
 .section-one {
   grid-column: 1/4;
   padding: 1em;
-  border-bottom: 1px solid #6b9870;
   -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
@@ -92,21 +91,20 @@ body {
 }
 
 .btn--new-quote {
-  padding: 10px 10px;
-  background-color: #0e6b16;
-  color: white;
-  transition: background-color 0.5s linear;
-}
-
-.btn--new-quote:hover {
-  background-color: #3e8e41;
+  padding: 8px 16px;
+  border-radius: 5px;
 }
 
 .link {
   text-decoration: none;
-  outline: none;
-  padding: 2px 4px;
+  color: var(--body-color);
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: color var(--transition);
 }
 .link:focus {
   outline: var(--focus);
+}
+.link:hover {
+  color: rgba(255, 255, 0, 0.775);
 }
