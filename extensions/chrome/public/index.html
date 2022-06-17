@@ -15,9 +15,12 @@
       <p id="intro"></p>
     </header>
     <main class="main-wrapper">
-      <section class="section-one" >
-        <p id="quote" class="margin-top-and-bottom large-font" tabindex="0"></p>
-        <p id="author"></p>
+      <section class="section-one">
+        <!-- tabindex="0" makes UI keyboard navigable  -->
+        <div class="paragraph-wrapper" tabindex="0">
+          <p id="quote" class="margin-bottom large-font"></p>
+          <p id="author"></p>
+        </div>
       </section>
       <div class="section-two">
         <button class="btn btn--new-quote" id="get-new-quote">New Quote</button>

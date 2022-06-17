@@ -79,13 +79,19 @@ body {
   box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
 }
 
-.margin-top-and-bottom {
-  margin: 0 0 2em 0;
+.margin-bottom {
+  margin-bottom: 2em;
 }
+.paragraph-wrapper{
+  padding: 0.5em;
 
+}
+.paragraph-wrapper:focus{
+  outline: var(--focus);
+}
 .section-one {
   grid-column: 1/4;
-  padding: 1em;
+  padding: 0.5em;
   overflow-y: auto;
   -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
   -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
