@@ -6,3 +6,5 @@ TODOS
 - Fix the height of the first container to 175.2px. Looks like it is the best height to prevent the white color at the bottom from showing
 - Apply transition when retrieving new quotes
 - Investigate how to use flex and scroll
+- Create new logo and icons
+- Create firefox and opera extensions

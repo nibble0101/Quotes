@@ -19,12 +19,13 @@ const getNewQuoteBtnEl = document.getElementById("get-new-quote");
 const cache = { quotes: [] };
 
 /**
- * Updates UI
+ * Updates the UI
+ * @param {Object} details - Quote details for updating UI
  */
-const updateUI = ({ quote, author, intro }) => {
-  quoteEl.innerText = quote;
-  authorEl.innerText = author;
-  introEl.innerText = intro;
+const updateUI = (details) => {
+  quoteEl.innerText = details.quote;
+  authorEl.innerText = details.author;
+  introEl.innerText = details.intro;
 };
 
 /**
@@ -58,8 +59,8 @@ getNewQuoteBtnEl.addEventListener("click", async () => {
       const exposedQuotes =
         quotesFromLocalStorage[localStorageKeys.exposedQuotes];
 
-      // If few unread quotes, retrieve read quotes combine with unread quotes and cache
-      // Less than 20 quotes are considered few. Can be any value. Use your own judgement.
+      // If there are few unread quotes left, combine read quotes with unread quotes before caching
+      // Less than 20 quotes are considered few. Can be any value. Use your own judgement to come up with appropriate value.
       if (unReadQuotes.length < 20) {
         // Shuffle unread and exposed quotes and cache
         cache.quotes = shuffleArray([...unReadQuotes, ...exposedQuotes]);
@@ -75,6 +76,7 @@ getNewQuoteBtnEl.addEventListener("click", async () => {
     // Get random quote from the list of cached quotes. There is possibility of repetition
     // FIXME: Retrieve random quote from API after setting up a dedicated quotes API
     const quote = quotes[randomInt];
+
     updateUI({ ...quote, intro: getIntroText() });
   } catch (error) {
     console.error(error);
@@ -87,7 +89,6 @@ getNewQuoteBtnEl.addEventListener("click", async () => {
  * there is a popup. Adding and removing popup manually
  * is more tedious than this.
  */
-
 window.addEventListener("DOMContentLoaded", async () => {
   try {
     const todaysDateAndQuote = await getDataFromLocalStorage([
@@ -156,6 +157,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // Todays quote
     updateUI({ ...todaysNewQuote, intro: getIntroText() });
+
+    // Cache quotes for random retrieval
+    cache.quotes = quotes;
 
     // Update database
     await setDataToLocalStorage({
