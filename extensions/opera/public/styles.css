@@ -1,0 +1,143 @@
+:root {
+  --btn-bg-color: #04aa6d;
+  --btn-hover-bg-color: #29785b;
+  --btn-color: #ffffff;
+  --body-bg-color: #1d2a35;
+  --body-color: #dddddd;
+  --focus: 2px solid var(--body-color);
+  --transition: 0.5s ease-in-out;
+  --scrollbar-bg-color: #38444d;
+  --scrollbar-thumb-bg-color: #826e53;
+  /* 
+     FIXME
+     There is an ugly white color which appears at the bottom
+     of the popup on chrome for certain heights. No idea whether 
+     it is a bug or not. Setting .main-wrapper to height of 175.2px seems 
+     to conceal or remove it. This is a hack which needs to be fixed after
+     understanding the cause of the bug.
+  */
+  --main-wrapper-height: 175.2px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 350px;
+  background-color: var(--body-bg-color);
+  color: var(--body-color);
+}
+
+.header__close-btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn {
+  outline: none;
+  border: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--btn-bg-color);
+  color: var(--btn-color);
+  transition: background-color var(--transition);
+}
+
+.btn:focus {
+  outline: var(--focus);
+}
+
+.btn:hover {
+  background-color: var(--btn-hover-bg-color);
+}
+
+.btn--close-window {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.header {
+  padding: 1em;
+}
+
+.footer {
+  padding: 1em;
+}
+
+.main-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: var(--main-wrapper-height);
+  -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+}
+
+.margin-bottom {
+  margin-bottom: 2em;
+}
+.paragraph-wrapper{
+  padding: 0.5em;
+
+}
+.paragraph-wrapper:focus{
+  outline: var(--focus);
+}
+.section-one {
+  grid-column: 1/4;
+  padding: 0.5em;
+  overflow-y: auto;
+  -webkit-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  -moz-box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+  box-shadow: 40px 0px 189px 1px rgba(107, 152, 112, 1);
+}
+
+.section-one::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--scrollbar-bg-color);
+}
+
+.section-one::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg-color);
+  border-radius: 10px;
+}
+
+.large-font {
+  font-size: 1.5em;
+}
+
+.section-two {
+  grid-column: 4/6;
+  background-image: url("./images/forest.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn--new-quote {
+  padding: 8px 16px;
+  border-radius: 5px;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--body-color);
+  padding: 4px 8px;
+  border-radius: 5px;
+  transition: color var(--transition);
+}
+
+.link:focus {
+  outline: var(--focus);
+}
+
+.link:hover {
+  color: rgba(255, 255, 0, 0.775);
+}

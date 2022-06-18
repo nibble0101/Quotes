@@ -1,0 +1,25 @@
+{
+  "name": "Inspirational Quotes",
+  "description": "Quotes to inspire you for the rest of your day",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "permissions": ["storage", "idle"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "public/index.html",
+    "default_title": "Your daily inspirational quote",
+    "default_icon": {
+      "16": "public/icons/target_16.png",
+      "32": "public/icons/target_32.png"
+    }
+  },
+  "icons": {
+    "16": "public/icons/target_16.png",
+    "32": "public/icons/target_32.png",
+    "48": "public/icons/target_48.png",
+    "128": "public/icons/target_128.png"
+  }
+}
