@@ -80,13 +80,14 @@ body {
 }
 
 .margin-bottom {
+  /* Read the following stackoverflow answers to figure out how to center the quotes without overflowing */
+  /* https://stackoverflow.com/questions/33454533/cant-scroll-to-top-of-flex-item-that-is-overflowing-container */
   margin-bottom: 2em;
 }
-.paragraph-wrapper{
+.paragraph-wrapper {
   padding: 0.5em;
-
 }
-.paragraph-wrapper:focus{
+.paragraph-wrapper:focus {
   outline: var(--focus);
 }
 .section-one {
