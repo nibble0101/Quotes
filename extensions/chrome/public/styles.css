@@ -7,7 +7,7 @@
   --focus: 2px solid var(--body-color);
   --transition: 0.5s ease-in-out;
   --scrollbar-bg-color: #38444d;
-  --scrollbar-thumb-bg-color: #826e53;
+  --scrollbar-thumb-bg-color: rgb(64, 114, 89);
   /* 
      FIXME
      There is an ugly white color which appears at the bottom
@@ -106,7 +106,7 @@ body {
 
 .section-one::-webkit-scrollbar-thumb {
   background-color: var(--scrollbar-thumb-bg-color);
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .large-font {
