@@ -1,12 +1,40 @@
-# Quotes
+ <!-- markdownlint-disable -->
+<h1 style="text-align:center">
+  <img src="./images/target.svg" alt="Breathing" /><br>
+  Inspire
+</h1>
 
-![Quote extension](./screenshots/extension.png)
+<p style="text-align:center">
+  <a href="https://microsoftedge.microsoft.com/addons/detail/inspirational-quotes/kgpcddfdjidepddepnigkmlgddpknfal" style="text-decoration:none">
+    <img src="./images/badges/badge.png"   alt="Download from microsoft store" title="Download from microsoft store"/>
+  </a>
+</p>
 
-A simple browser extension which retrieves one inspiring quote each day for 365 days. The quotes have been hand picked to make your day productive. Enjoy!
+<p style="text-align:center" > 
+  <a>
+    <img src="./images/screenshots/extension.png" style="border-radius: 23.438px"  alt="Inspire"/>
+  </a>
+</p>
 
-## Extension
+<p style="text-align:center">
+  A simple browser extension which retrieves one inspiring quote each day for 365 days.
+  The quotes have been hand picked to make your day productive. Enjoy!
+</p>
 
-[![Download from microsoft store](./badge/badge.png)](https://microsoftedge.microsoft.com/addons/detail/inspirational-quotes/kgpcddfdjidepddepnigkmlgddpknfal)
+<!-- markdownlint-enable -->
+<!-- markdownlint-disable headings -->
+
+## Quotes
+
+The quotes used in this browser extesnion are sourced from:
+
+- [Quotable API](https://github.com/lukePeavey/quotable)
+- [Type quotes API](https://type.fit/api/quotes)
+
+## Contributing
+
+Be sure to open an issue if you come across a bug or you want to make a feature request.
+You will find the code in the [extensios directory](./extensions/).
 
 ## License
 
