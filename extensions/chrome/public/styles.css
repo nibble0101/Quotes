@@ -89,7 +89,8 @@ body {
   /* 
    For some reason applying `justify-content: space-between` or `justify-content: space-around` results
    in some content being cut off even when there is a scroll bar. The following stackoverflow answers 
-   why an overflow occurs in such situations.
+   why an overflow occurs in such situations. Therefore always stick with `justify-content: space-between`
+   maintaining `min-height: 100%`
    https://stackoverflow.com/questions/33454533/cant-scroll-to-top-of-flex-item-that-is-overflowing-container  
    */
 
