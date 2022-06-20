@@ -1,7 +1,7 @@
 {
   "name": "Inspirational Quotes",
   "description": "Quotes to inspire you for the rest of your day",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 3,
   "permissions": ["storage", "idle"],
   "background": {
