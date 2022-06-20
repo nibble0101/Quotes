@@ -1,25 +1,22 @@
  <!-- markdownlint-disable -->
-<h1 style="text-align:center">
+<h1 align="center">
   <img src="./images/target.svg" alt="Breathing" /><br>
   Inspire
 </h1>
 
-<p style="text-align:center">
+<p align="center">
   <a href="https://microsoftedge.microsoft.com/addons/detail/inspirational-quotes/kgpcddfdjidepddepnigkmlgddpknfal" style="text-decoration:none">
     <img src="./images/badges/badge.png"   alt="Download from microsoft store" title="Download from microsoft store"/>
   </a>
 </p>
 
-<p style="text-align:center" > 
+<p align="center" > 
   <a>
     <img src="./images/screenshots/extension.png" style="border-radius: 23.438px"  alt="Inspire"/>
   </a>
 </p>
 
-<p style="text-align:center">
-  A simple browser extension which retrieves one inspiring quote each day for 365 days.
-  The quotes have been hand picked to make your day productive. Enjoy!
-</p>
+A simple browser extension which retrieves one inspiring quote each day for 365 days.The quotes have been hand picked to make your day productive. Enjoy!
 
 <!-- markdownlint-enable -->
 <!-- markdownlint-disable headings -->
