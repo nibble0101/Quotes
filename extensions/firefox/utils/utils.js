@@ -181,7 +181,18 @@ export const getShortWeekDay = () => {
  */
 export const setTitle = async () => {
   const title = `Your ${getFullWeekDay()} inspirational quote.`;
+
+  /*
+
+  The action API is available in MV3. Firefox doesn't
+  support MV3 yet. This function should return without
+  doing anything in Firefox. Start notification if Mozilla 
+  rolls out support for MV3 by uncommenting the lines of 
+  code below.
+  
   await chrome.action.setTitle({ title });
+  
+  */
 };
 
 /**
