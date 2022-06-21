@@ -15,7 +15,8 @@
       <p id="intro"></p>
     </header>
     <main class="main-wrapper">
-      <section class="section-one">
+      <!-- Firefox sets outline for an element with focus:auto. It kinda looks ugly. Need to set tabindex=-1 -->
+      <section class="section-one" tabindex="-1">
         <!-- tabindex="0" makes UI keyboard navigable  -->
         <div class="paragraph-wrapper" tabindex="0">
           <p id="quote" class="margin-bottom large-font"></p>
