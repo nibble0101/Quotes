@@ -17,15 +17,27 @@ export const fetchData = async (uri) => {
 };
 
 /**
+ *
  * Get data from localStorage. If keys don't exist it returns {}
  * It doesn't throw an error if a requested key doesn't exist. The
  * non existent key will not be part of the returned object
+ *
  * @param {String[]} storagKeys Array of local storage keys.
  * @returns
  */
-export const getDataFromLocalStorage = async (storagKeys) => {
-  const data = await chrome.storage.local.get(storagKeys);
-  return data;
+export const getDataFromLocalStorage = (storagKeys) => {
+  /*
+
+  The storage.local.get function doesn't return promise when used
+  with MV2. To achieve the behavior similar to that of MV3, we need to
+  wrap it in a promise. Revert this when migrating to MV3 because it 
+  returns a promise by default if you don't pass the callback in MV3.
+
+  */
+
+  return new Promise((resolve) => {
+    chrome.storage.local.get(storagKeys, resolve);
+  });
 };
 
 /**
@@ -33,9 +45,22 @@ export const getDataFromLocalStorage = async (storagKeys) => {
  * @param {Object} data Data you want to set to local storage in the form { key: value }
  * @returns
  */
-export const setDataToLocalStorage = async (data) => {
-  await chrome.storage.local.set(data);
-  return true;
+export const setDataToLocalStorage = (data) => {
+  /*
+
+  The crome.local.set function doesn't return promise when used
+  in MV2. We need to wrap it in a promise to make it behave like 
+  the corresponding functionality in MV3. Revert this when migrating 
+  to MV3 because it returns a promise by default if you don't pass the
+  callback in MV3.
+  
+  */
+
+  return new Promise((resolve) => {
+    chrome.storage.local.set(data, () => {
+      resolve(true);
+    });
+  });
 };
 
 /**
@@ -102,10 +127,20 @@ export const checkIfIsTheSameDay = (dateToCheck, todaysDate = new Date()) => {
  * @returns
  */
 export const setUserNotification = async () => {
+  /* 
+
+  The action API is available in MV3. Firefox doesn't
+  support MV3 yet. This function should return without
+  doing anything in Firefox. Start notification if Mozilla 
+  rolls out support for MV3 by uncommenting the lines of 
+  code below.
+
   await Promise.all([
     chrome.action.setBadgeText({ text: getShortWeekDay() }),
     chrome.action.setBadgeBackgroundColor({ color: "green" }),
   ]);
+
+  */
 
   return true;
 };
@@ -115,10 +150,20 @@ export const setUserNotification = async () => {
  * @returns
  */
 export const removeUserNotification = async () => {
+  /*
+
+  The action API is available in MV3. Firefox doesn't
+  support MV3 yet. This function should return without
+  doing anything in Firefox. Start notification if Mozilla 
+  rolls out support for MV3 by uncommenting the lines of 
+  code below.
+  
   await Promise.all([
     chrome.action.setBadgeText({ text: "" }),
     chrome.action.setBadgeBackgroundColor({ color: [0, 0, 0, 0] }),
   ]);
+
+  */
 
   return true;
 };
@@ -145,7 +190,18 @@ export const getShortWeekDay = () => {
  */
 export const setTitle = async () => {
   const title = `Your ${getFullWeekDay()} inspirational quote.`;
+
+  /*
+
+  The action API is available in MV3. Firefox doesn't
+  support MV3 yet. This function should return without
+  doing anything in Firefox. Start notification if Mozilla 
+  rolls out support for MV3 by uncommenting the lines of 
+  code below.
+  
   await chrome.action.setTitle({ title });
+  
+  */
 };
 
 /**
