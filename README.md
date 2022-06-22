@@ -23,7 +23,7 @@ A simple browser extension which retrieves one inspiring quote each day for 365 
 
 ## Quotes
 
-The quotes used in this browser extesnion are sourced from:
+The quotes used in this browser extesion are sourced from:
 
 - [Quotable API](https://github.com/lukePeavey/quotable)
 - [Type quotes API](https://type.fit/api/quotes)
@@ -31,7 +31,7 @@ The quotes used in this browser extesnion are sourced from:
 ## Contributing
 
 Be sure to open an issue if you come across a bug or you want to make a feature request.
-You will find the code in the [extensios directory](./extensions/).
+You will find the code in the [extensions directory](./extensions/).
 
 ## License
 
