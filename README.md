@@ -6,7 +6,10 @@
 
 <p align="center">
   <a href="https://microsoftedge.microsoft.com/addons/detail/inspirational-quotes/kgpcddfdjidepddepnigkmlgddpknfal" style="text-decoration:none">
-    <img src="./images/badges/badge.png"   alt="Download from microsoft store" title="Download from microsoft store"/>
+    <img src="./images/badges/edge-store-badge.png"   alt="Download from microsoft store" title="Download from microsoft store"/>
+  </a>
+   <a href="https://addons.mozilla.org/en-US/firefox/addon/daily-inspirational-quotes/" style="text-decoration:none">
+    <img src="./images/badges/firefox-addon-badge.png"   alt="Download from Firefox addon store" title="Download from Firefox addon store"/>
   </a>
 </p>
 
